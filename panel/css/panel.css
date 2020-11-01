@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
+    --color: black;
+    --color-light: rgba(0,0,0,0.35);
+    --color-bg: white;
+
+    color: var(--color);
+    margin: 20px;
+}
+
+body * {
+    font-family: 'Roboto', sans-serif;
+}
+
+body.theme-dark {
+    --color: white;
+    --color-light: rgba(255,255,255,0.35);
+    --color-bg: #242424;
+}
+
+.template {
+    display: none !important;
+}
+
+.header {
+    display: flex;
+    width: calc(100% - 44px);
+    margin: 20px;
+}
+
+.search {
+    flex: 1;
+    border: 1px solid var(--color);
+}
+
+.refresh {
+    border: 1px solid var(--color);
+    margin-left: 15px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.search input {
+    display: block;
+    width: 100%;
+    height: 1.9rem;
+    border: 0;
+    outline: none;
+    font-size: .9rem;
+    color: var(--color);
+    background-color: var(--color-bg);
+    padding: 3px 7px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    width: calc((100% / 2) - 42px);
+    margin: 20px;
+    border: 1px solid var(--color);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.card__close {
+    position: absolute;
+    right: -1px;
+    top: -25px;
+    padding: 2px 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    border: 1px solid var(--color);
+}
+
+.card__title {
+    border-top: 1px solid var(--color-light);
+    margin-top: 10px;
+    padding: 10px 3px 0;
+}
+
+.card__title input {
+    height: 1.5rem;
+    width: 100%;
+    border: 0px;
+    outline: none;
+    font-size: .9rem;
+    color: var(--color);
+    background-color: var(--color-bg);
+}
+
+.card__body {
+    padding: 3px;
+}
+
+.card__body textarea {
+    width: 100%;
+    resize: none;
+    height: 10rem;
+    border: 0px;
+    outline: none;
+    color: var(--color);
+    background-color: var(--color-bg);
+}
+
+.cards__add {
+    display: flex;
+    width: calc((100% / 2) - 40px);
+    height: 222px;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.cards__add span {
+    display: inline-block;
+    border: 1px solid var(--color);
+    padding: 4px 10px;
+    box-sizing: border-box;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+textarea::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 1px;
+}
+textarea::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 1px;
+}
+textarea::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+body.theme-dark textarea::-webkit-scrollbar {
+    width: 10px;
+}
+body.theme-dark textarea::-webkit-scrollbar-track {
+    background: #444;
+    border-radius: 1px;
+}
+body.theme-dark textarea::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 1px;
+}
+body.theme-dark textarea::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

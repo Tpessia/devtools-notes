@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+    "name": "DevTools Notes",
+    "version": "1.0.0",
+    "description": "A local repository for all your coding needs!",
+    "author": "Thiago Pessia",
+    "icons": {
+        "64": "icon.png"
+    },
+    "devtools_page": "devtools/devtools.html",
+    "permissions": [
+        "storage"
+    ]
+}

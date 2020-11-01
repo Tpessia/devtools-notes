@@ -1,0 +1,1 @@
+chrome.devtools.panels.create('Notes', '/icon.png', '/panel/panel.html');
