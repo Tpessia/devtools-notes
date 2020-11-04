@@ -34,7 +34,7 @@ body.theme-dark {
     border: 1px solid var(--color);
 }
 
-.refresh {
+.header-btn {
     border: 1px solid var(--color);
     margin-left: 15px;
     width: 35px;

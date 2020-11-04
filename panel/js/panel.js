@@ -3,6 +3,7 @@ import { Template } from './template.js';
 import { theme } from './theme.js';
 import { debounce } from './debounce.js';
 import { uuidv4 } from './uuid.js';
+import { exportJson, importJson } from './json-in-out.js';
 
 ;(async () => {
     class Panel {
@@ -10,7 +11,9 @@ import { uuidv4 } from './uuid.js';
             this.components = {
                 header: '.header',
                 searchInput: '.search input',
-                refreshBtn: '.refresh',
+                refreshBtn: '.header-btn.refresh',
+                importBtn: '.header-btn.import #import',
+                exportBtn: '.header-btn.export',
                 cards: '.cards',
                 cardsAdd: '.cards .cards__add',
                 cardsAddBtn: '.cards .cards__add span',
@@ -45,6 +48,12 @@ import { uuidv4 } from './uuid.js';
 
             document.querySelector(this.components.refreshBtn)
                 .addEventListener('click', e => this.reloadCardsData());
+
+            document.querySelector(this.components.importBtn)
+                .addEventListener('change', e => this.importData(e));
+
+            document.querySelector(this.components.exportBtn)
+                .addEventListener('click', e => this.exportData());
         }
 
         //#endregion
@@ -112,9 +121,9 @@ import { uuidv4 } from './uuid.js';
             return emptyBody && emptyTitle;
         });
 
-        updateRepos(data) {
-            if (data && data.repos && data.repos.length > 0)
-                data.repos.forEach(e => this.addCard(e.id, e.title, e.code));
+        updateRepos(repos) {
+            if (repos && repos.length > 0)
+                repos.forEach(e => this.addCard(e.id, e.title, e.code));
             else this.addCard();
         }
 
@@ -144,18 +153,28 @@ import { uuidv4 } from './uuid.js';
             const repos = this.getRepos();
             const data = this.storage.get();
             await this.storage.set({ ...data, repos });
-
-            // let hist = {
-            //     old: data.repos.filter(dr => !repos.some(r => dr.id === r.id)),
-            //     current: repos.filter(r => data.repos.some(dr => r.id === dr.id)),
-            //     new: repos.filter(r => !data.repos.some(dr => r.id === dr.id))
-            // }
         }
 
         async reloadCardsData() {
             const data = await this.loadData();
             this.getCards().forEach(node => node.remove());
+            this.updateRepos(data.repos);
+        }
+
+        async importData(e) {
+            if (!e || !e.target || !e.target.files || e.target.files.length === 0) return;
+
+            const data = await importJson(e.target.files[0]);
+            e.target.value = null;
+
+            this.getCards().forEach(node => node.remove());
             this.updateRepos(data);
+            await this.saveData();
+        }
+
+        exportData() {
+            const repos = this.getRepos();
+            exportJson(repos, 'notes');
         }
 
         //#endregion
