@@ -35,13 +35,25 @@ import { exportJson, importJson } from './json-in-out.js';
 
         //#region Events
 
+        async init() {
+            this.startTheme();
+            this.startBind();
+
+            await this.reloadCardsData();
+
+            if (!this.hasCard()) this.addCard();
+        }
+
         startTheme() {
             theme.setClass(document.code);
         }
 
         startBind() {
             document.querySelector(this.components.cardsAddBtn)
-                .addEventListener('click', e => this.addCard());
+                .addEventListener('click', e => {
+                    this.addCard(); 
+                    window.scrollTo(0, document.body.scrollHeight);
+                });
 
             document.querySelector(this.components.searchInput)
                 .addEventListener('input', debounce(e => this.search(e.target.value), 500));
@@ -102,7 +114,6 @@ import { exportJson, importJson } from './json-in-out.js';
             container.insertBefore(newCard, addBtn);
 
             this.resetSearch();
-            window.scrollTo(0, document.body.scrollHeight);
         }
 
         async removeCard(cardNode) {
@@ -178,15 +189,6 @@ import { exportJson, importJson } from './json-in-out.js';
         }
 
         //#endregion
-
-        async init() {
-            this.startTheme();
-            this.startBind();
-
-            await this.reloadCardsData();
-
-            if (!this.hasCard()) this.addCard();
-        }
     }
 
     const panel = new Panel();

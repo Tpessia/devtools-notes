@@ -5,8 +5,10 @@ body {
     --color-light: rgba(0,0,0,0.35);
     --color-bg: white;
 
-    color: var(--color);
     margin: 20px;
+    margin-top: 0;
+    color: var(--color);
+    background-color: var(--color-bg);
 }
 
 body * {
@@ -24,9 +26,14 @@ body.theme-dark {
 }
 
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: var(--color-bg);
     display: flex;
     width: calc(100% - 44px);
-    margin: 20px;
+    padding: 20px;
+    margin-bottom: 5px;
 }
 
 .search {
