@@ -7,6 +7,12 @@ A simple Chrome Extension that provides a repository/notes feature to Chrome Dev
 ---
 **Instalation Guide**
 
+Chrome Web Store:
+\
+[https://chrome.google.com/webstore/detail/devtools-notes/fhaognaboimhkmhdacigeikmmaphlhba](https://chrome.google.com/webstore/detail/devtools-notes/fhaognaboimhkmhdacigeikmmaphlhba)
+
+Manual:
+\
 [https://developer.chrome.com/extensions](https://developer.chrome.com/extensions#:~:text=chrome://extensions)
 
 ---
